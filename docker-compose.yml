@@ -1,0 +1,25 @@
+
+# docker container where the application runs
+
+services:
+  app-ui:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-ui
+
+    environment:
+      - OPENAI_API_KEY=${gpt_API_KEY}
+
+    ports:
+      - "8505:8501" # internal:external
+
+    volumes:
+      - .:/app/
+      - C:/knowledge:/data/knowledge       # Mount Windows host folder
+      - chroma-volume:/app/chroma_store    # Persistent volume for Chroma DB
+
+    restart: always
+
+volumes:
+  chroma-volume: # named Docker volume for persisting Chroma DB data

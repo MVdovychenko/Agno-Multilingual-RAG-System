@@ -1,0 +1,6 @@
+# Ignore the whole secrets folder
+chroma_store/
+.vscode/
+__pycache__/
+# Ignore the .env file
+.env
